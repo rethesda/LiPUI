@@ -191,5 +191,11 @@ package
 		{
 			return System.totalMemory;
 		}
+		
+		public function SetUIVisibility(visibility:Boolean): void
+		{
+			this.visible = visibility;
+			stage.visible = visibility;
+		}
 	}
 }

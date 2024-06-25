@@ -36,6 +36,7 @@ public:
 	static void SetWidgetPosition(UInt32 actorId, SInt32 x, SInt32 y);
 	static void ClearState();
 	static void SetDistance(UInt32 distance);
+	static void SetUIVisibility(bool visible);
 	static void OpenMenu()
 	{
 		BSFixedString mName(MenuName);

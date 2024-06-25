@@ -415,6 +415,18 @@ void LiPUIMenu::SetDistance(UInt32 distance)
 	_MESSAGE("max distance set to %d", distance);
 }
 
+void LiPUIMenu::SetUIVisibility(bool visible)
+{
+	if (!self)
+	{
+		_MESSAGE("No menu created");
+		return; // UI object is not created
+	}
+	GFxValue v(visible);
+	const bool res = self->stage.Invoke("SetUIVisibility",nullptr, &v, 1);
+	if (!res)
+		_WARNING("Failed to set .visible");
+}
 
 
 void UpdateFontColor(GFxValue& stage)

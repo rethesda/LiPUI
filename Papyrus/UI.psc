@@ -22,3 +22,5 @@ int function FromHexString(string value) global native
 bool function __RegisterAttributes(ActorValue[] attributes, bool[] flags) native global
 
 
+; debug
+function __SetMenuVisibility(bool visible) global native

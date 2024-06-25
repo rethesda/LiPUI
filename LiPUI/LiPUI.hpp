@@ -66,10 +66,17 @@ namespace LiPUI
 		return Attributes::BuildCache(attributes, flags);
 	}
 
+	void __SetMenuVisibility(StaticFunctionTag* _, bool visible)
+	{
+		LiPUIMenu::SetUIVisibility(visible);
+	}
+
 	void Register(VirtualMachine* vm)
 	{
 		vm->RegisterFunction(new NativeFunction2("__RegisterAttributes", PluginAPIExport::EXPORT_PAPYRUS_SCRIPT, __RegisterAttributes, vm));
 		vm->SetFunctionFlags(PluginAPIExport::EXPORT_PAPYRUS_SCRIPT, "__RegisterAttributes", IFunction::kFunctionFlag_NoWait);
+		vm->RegisterFunction(new NativeFunction1("__SetMenuVisibility", PluginAPIExport::EXPORT_PAPYRUS_SCRIPT, __SetMenuVisibility, vm));
+		vm->SetFunctionFlags(PluginAPIExport::EXPORT_PAPYRUS_SCRIPT, "__SetMenuVisibility", IFunction::kFunctionFlag_NoWait);
 
 		vm->RegisterFunction(new NativeFunction2("EnableWidget", PluginAPIExport::EXPORT_PAPYRUS_SCRIPT, EnableWidget, vm));
 		vm->SetFunctionFlags(PluginAPIExport::EXPORT_PAPYRUS_SCRIPT, "EnableWidget", IFunction::kFunctionFlag_NoWait);
