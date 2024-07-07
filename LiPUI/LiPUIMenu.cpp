@@ -428,12 +428,9 @@ void LiPUIMenu::SetUIVisibility(bool visible)
 		_WARNING("Failed to set .visible");
 }
 
-
 void UpdateFontColor(GFxValue& stage)
 {
-	BSFixedString mName("HUDMenu");
-	HUDMenu * menu = dynamic_cast<HUDMenu*>((*g_ui)->GetMenu(mName));
-	const UInt32 color = GFxHelper::GetTextColor(menu);
+	const UInt32 color = GFxHelper::GetTextColor();
 	GFxValue c;
 	c.SetUInt(color);
 	_MESSAGE("Set color = 0x%08X", color);

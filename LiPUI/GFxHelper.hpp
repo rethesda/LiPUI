@@ -38,42 +38,40 @@ namespace GFxHelper
 		while(true);
 	}
 
-	UInt32 GetTextColor(HUDMenu * menu)
+#include "f4se/GameSettings.h"
+	UInt32 GetTextColor()
 	{
-		UInt32 retVal = ColorCoding::DefaultColor;
-		if (!menu)
+		UInt32 red;
+		UInt32 green;
+		UInt32 blue;
+		Setting* colorR = GetINISetting("iHUDColorR:Interface");
+		Setting* colorG = GetINISetting("iHUDColorG:Interface");
+		Setting* colorB = GetINISetting("iHUDColorB:Interface");
+		if (colorR)
+			red = colorR->data.u32;
+		else
 		{
-			_MESSAGE("Not a HUDMenu class ");
-			return retVal;
+			_MESSAGE("R: None");
+			return ColorCoding::DefaultColor;
 		}
-		GFxValue transform;
-		if (!GetNestedMember(&menu->stage, "HUDNotificationsGroup_mc.Messages_mc.transform.colorTransform", transform))
+
+		if (colorG)
+			green = colorG->data.u32;
+		else
 		{
-			_MESSAGE("Failed to get colorTransform");
-			return retVal;
+			_MESSAGE("G: None");
+			return ColorCoding::DefaultColor;
 		}
-		GFxValue red;
-		if (!transform.GetMember("redMultiplier", &red))
+
+		if (colorB)
+			blue = colorB->data.u32;
+		else
 		{
-			_MESSAGE("Failed to get redMultiplier");
-			return retVal;
+			_MESSAGE("B: None");
+			return ColorCoding::DefaultColor;
 		}
-		GFxValue green;
-		if (!transform.GetMember("greenMultiplier", &green))
-		{
-			_MESSAGE("Failed to get greenMultiplier");
-			return retVal;
-		}
-		GFxValue blue;
-		if (!transform.GetMember("blueMultiplier", &blue))
-		{
-			_MESSAGE("Failed to get blueMultiplier");
-			return retVal;
-		}
-		retVal = static_cast<UInt32>(red.GetNumber()*255) << 16 |
-				 static_cast<UInt32>(green.GetNumber()*255) << 8 |
-				 static_cast<UInt32>(blue.GetNumber()*255);
-		return retVal;
+
+		return red << 16 | green << 8 | blue;
 	}
 	
 }
