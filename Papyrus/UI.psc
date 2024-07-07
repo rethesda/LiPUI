@@ -24,3 +24,4 @@ bool function __RegisterAttributes(ActorValue[] attributes, bool[] flags) native
 
 ; debug
 function __SetMenuVisibility(bool visible) global native
+function __CloseMenuObject() global native
