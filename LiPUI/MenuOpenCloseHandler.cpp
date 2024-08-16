@@ -69,6 +69,7 @@ EventResult	MenuOpenCloseHandler::ReceiveEvent(MenuOpenCloseEvent * evn, void * 
 	if (strcmp(LiPUIMenu::MenuName, name) == 0)
 		return kEvent_Continue;
 
+	BSReadLocker locker(g_menuTableLock);
 	const LiPMenuState state = LiPMenuState::CalculateState();
 	if (!state.Open)
 	{
