@@ -88,7 +88,8 @@ public:
 		if (swfName.find(MenuName) == std::string::npos)
 			return false;
 		// handle our menu loading
-
+		// TODO: set 'BackgroundAlpha' to 0. See https://github.com/libxse/commonlibf4/blob/b7f4925c7a47fa3a0c2586becec7cad83c3b8173/include/Scaleform/G/GFx_Movie.h#L146
+		// it is 21th method of GFxMovieView, or method's offset is 0x104
 		return true;
 	}
 	void AdvanceMovie(float unk0, void * unk1) override;
