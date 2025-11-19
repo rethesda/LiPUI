@@ -133,9 +133,13 @@ extern "C"
 		PluginAPIExport::pluginVersionInt,
 		"LiP UI",
 		"Dlinny_Lag",
-
+#if REQUIRED_RUNTIME <= RUNTIME_VERSION_1_10_984
 		F4SEPluginVersionData::kAddressIndependence_AddressLibrary_1_10_980,
 		F4SEPluginVersionData::kStructureIndependence_1_10_980Layout,
+#else
+		F4SEPluginVersionData::kAddressIndependence_AddressLibrary_1_11_137,
+		F4SEPluginVersionData::kStructureIndependence_1_11_137Layout,
+#endif
 		{ REQUIRED_RUNTIME, 0 },
 		0,
 		0,
@@ -159,9 +163,9 @@ extern "C"
 			return false;
 		}
 
-		if(f4se->runtimeVersion < REQUIRED_RUNTIME)
+		if(f4se->runtimeVersion != REQUIRED_RUNTIME)
 		{
-			_ERROR("Unsupported runtime version %08X (expected %08X or higher)", f4se->runtimeVersion, REQUIRED_RUNTIME);
+			_ERROR("Unsupported runtime version %08X (expected %08X)", f4se->runtimeVersion, REQUIRED_RUNTIME);
 			return false;
 		}
 
