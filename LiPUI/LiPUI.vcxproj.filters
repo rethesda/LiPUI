@@ -231,6 +231,7 @@
     <ClInclude Include="..\AA\Change.hpp">
       <Filter>AA</Filter>
     </ClInclude>
+    <ClInclude Include="f4_runtime.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VersionInfo.rc" />
